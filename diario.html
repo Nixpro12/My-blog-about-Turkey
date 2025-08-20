@@ -1,130 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Travel Diary | My Travel Blog</title>
+  <title>Diário de Viagem | Meu Blog de Viagens</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
     }
   </script>
+  <script>
+    function toggleMenu(forceClose = false) {
+      const sidebar = document.getElementById("sidebar");
+      const overlay = document.getElementById("overlay");
+      const isOpen = !sidebar.classList.contains("-translate-x-full");
+      if (forceClose || isOpen) {
+        sidebar.classList.add("-translate-x-full");
+        overlay.classList.add("hidden");
+      } else {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.remove("hidden");
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-200 transition-colors duration-300 flex">
+<body class="bg-gray-100 dark:bg-gray-900 font-sans flex min-h-screen relative text-gray-900 dark:text-gray-200 transition-colors duration-300">
 
-  <!-- Sidebar -->
-  <aside class="fixed md:static inset-y-0 left-0 w-64 min-h-screen bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 shadow-xl">
-    <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
+  <!-- Botão modo claro/escuro -->
+  <button id="toggleDark" aria-label="Toggle Dark Mode" 
+    class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded z-50 transition-colors duration-300">
+    🌙
+  </button>
+
+  <!-- Overlay mobile -->
+  <div id="overlay" onclick="toggleMenu(true)" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
+
+  <!-- Sidebar com emojis -->
+  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 bg-blue-700 dark:bg-blue-900 text-white p-4 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40 h-screen">
+    <h1 class="text-2xl font-bold mb-6">🌍 Travel Blog</h1>
     <nav>
-      <ul class="space-y-3">
-        <li><a href="area.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>📐</span> Area</a></li>
-        <li><a href="populacao.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>👥</span> Population</a></li>
-        <li><a href="linguas.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🗣️</span> Languages</a></li>
-        <li><a href="geografia.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🌄</span> Geography</a></li>
-        <li><a href="fauna.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🦁</span> Wildlife</a></li>
-        <li><a href="clima.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>☀️</span> Climate</a></li>
-        <li><a href="diario.html" class="flex items-center gap-2 p-2 rounded bg-blue-900 font-semibold transition-colors"><span>📔</span> Travel Diary</a></li>
+      <ul class="space-y-2">
+        <li><a href="area.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>📐</span> Area</a></li>
+        <li><a href="populacao.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>👥</span> Population</a></li>
+        <li><a href="linguas.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>🗣️</span> Languages</a></li>
+        <li><a href="geografia.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>🌄</span> Geography</a></li>
+        <li><a href="fauna.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>🦁</span> Wildlife</a></li>
+        <li><a href="clima.html" class="flex items-center gap-2 hover:bg-blue-500 dark:hover:bg-blue-600 p-2 rounded"><span>☀️</span> Climate</a></li>
+        <li><a href="diario.html" class="flex items-center gap-2 font-semibold bg-blue-900 dark:bg-blue-800 p-2 rounded"><span>📔</span> Travel Diary</a></li>
       </ul>
     </nav>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Conteúdo principal -->
   <main class="flex-1 p-6 md:ml-64">
-    <!-- Dark Mode Button -->
-    <button id="toggleDark" aria-label="Toggle Dark Mode"
-      class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md z-50">
-      🌙
-    </button>
+    <button id="hamburgerBtn" aria-label="Toggle Menu" class="md:hidden fixed top-4 left-4 bg-blue-700 dark:bg-blue-900 text-white p-2 rounded z-50">☰</button>
 
-    <!-- Hero Section -->
     <section class="relative rounded-2xl overflow-hidden shadow-md mb-6">
-      <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80" alt="Turkey"
-        class="w-full h-[400px] object-cover" />
+      <img src="diarioviagem.jpg" alt="Diário de Viagem" class="w-full h-96 object-cover" />
       <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-6">
-        <h1 class="text-4xl md:text-5xl text-white font-bold text-center">Travel Diary</h1>
+        <h1 class="text-3xl md:text-4xl text-white font-bold text-center">Diário de Viagem</h1>
       </div>
     </section>
 
-    <!-- Travel Diary Entries -->
-    <section class="max-w-4xl mx-auto space-y-10">
+    <!-- Artigos do diário -->
+    <section class="max-w-4xl mx-auto space-y-8">
 
       <!-- Day 1 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Day 1 - Arrival in Istanbul</h2>
-        <img src="ruaistambul.jpg" alt="Istanbul"
-          class="w-full h-64 object-cover rounded-lg mb-4" />
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          After a long and tiring flight, I finally touched down in the enchanting city of Istanbul. As soon as I stepped out of the airport, I was greeted by a warm breeze and the hum of a bustling city that never seems to rest. The drive to the hotel was an experience in itself — passing by a mosaic of ancient stone walls, colorful street markets, and sleek modern buildings standing side by side. Even in those first few moments, I felt the unique heartbeat of this place: a perfect blend of East and West, old and new, tradition and innovation. It was clear that this journey would be unlike any other.
+        <h2 class="text-2xl font-bold mb-4">Day 1 - Arrival in Turkey</h2>
+        <img src="ruaistambul.jpg" alt="Day 1" class="w-full h-64 object-cover rounded-lg mb-4">
+        <p class="leading-relaxed">
+          After a long flight, I finally landed in Istanbul! The moment I stepped off the plane, I was greeted by a city that pulses with life and history. Istanbul isn’t just a destination — it’s a living museum where ancient empires meet modern energy.
+          <br><br>
+          Even during the drive from the airport to my hotel, I could feel the unique rhythm of this place: sleek skyscrapers standing proudly beside centuries-old mosques, and the calls to prayer echoing through streets buzzing with cafés, shops, and friendly locals.
+          <br><br>
+          This city has been the heart of the Roman, Byzantine, and Ottoman empires — no wonder its cultural layers run so deep.
         </p>
       </article>
 
       <!-- Day 2 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Day 2 - Exploring Sultanahmet</h2>
-        <img src="Sultanahmet.jpg" alt="Sultanahmet"
-          class="w-full h-64 object-cover rounded-lg mb-4" />
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Today was an unforgettable dive into Istanbul's rich history. I spent the day wandering through the heart of the city — the legendary Sultanahmet district. Every corner of this area tells a story, with cobblestone streets leading to some of the world’s most iconic landmarks.
-
-My first stop was the awe-inspiring Hagia Sophia. Standing beneath its massive dome, surrounded by golden mosaics and the echoes of centuries past, I was overwhelmed by its beauty and grandeur. Just a short walk away, the Blue Mosque awaited with its elegant minarets and intricate interior, washed in soft shades of blue tiles that seemed to glow in the afternoon light.
-
-After hours of exploring, I sat down at a local street-side restaurant and treated myself to a freshly grilled kebab — smoky, flavorful, and absolutely satisfying. As the sun set over the domes and rooftops, I felt deeply grateful to witness this magical blend of culture, architecture, and hospitality.
+        <h2 class="text-2xl font-bold mb-4">Day 2 - Exploring Istanbul</h2>
+        <img src="Sultanahmet.jpg" alt="Day 2" class="w-full h-64 object-cover rounded-lg mb-4">
+        <p class="leading-relaxed">
+          I started my morning walking through the historic streets of Sultanahmet, the heart of old Constantinople. Visiting the Hagia Sophia was simply breathtaking. Just across the square stands the Blue Mosque, equally stunning with its elegant minarets and İznik tiles.
+          <br><br>
+          I ended the day with a sizzling Turkish kebab — spicy grilled meat wrapped in soft bread with pickled veggies and a dash of sumac.
         </p>
       </article>
 
       <!-- Day 3 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Day 3 - Bazaar and Bargains</h2>
-        <img src="granbazar.jpg" alt="Grand Bazaar"
-          class="w-full h-64 object-cover rounded-lg mb-4" />
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          This afternoon, I immersed myself in one of Istanbul’s most vibrant and chaotic experiences — the Grand Bazaar. As I stepped inside, I was instantly surrounded by a maze of winding alleys filled with more than 4,000 shops, each overflowing with colorful textiles, shimmering lanterns, handcrafted ceramics, and intricate jewelry.
-
-The scent of exotic spices hung heavy in the air, blending with the aromas of fresh tea and roasted nuts coming from small stalls tucked between shops. The sounds of lively conversations and the rhythmic call of vendors filled the space, creating a buzz unlike anything I’d experienced before.
-
-Bargaining was definitely part of the fun — and the challenge. I haggled (poorly at first) over the price of a handwoven scarf and a beautifully detailed mosaic lamp. After some back-and-forth and a few smiles, I walked away with a couple of unique souvenirs that I’ll treasure. The whole experience was overwhelming in the best way possible — a true feast for the senses.
+        <h2 class="text-2xl font-bold mb-4">Day 3 - Grand Bazaar Adventure</h2>
+        <img src="granbazar.jpg" alt="Day 3" class="w-full h-64 object-cover rounded-lg mb-4">
+        <p class="leading-relaxed">
+          I spent hours wandering through its labyrinthine corridors — over 4,000 shops! Bargaining with shopkeepers was a fun challenge. I left with a few meaningful gifts and souvenirs, each with its own story.
         </p>
       </article>
 
       <!-- Day 4 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 4 - Bosphorus Cruise</h2>
-        <img src="cruize.jpg" alt="Bosphorus"
-          class="w-full h-64 object-cover rounded-lg mb-4" />
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          Today I took a scenic boat tour along the Bosphorus Strait, the natural waterway that separates Europe and Asia. As the boat gently cruised between the two continents, I was treated to some of the most breathtaking views Istanbul has to offer.
-
-On both sides of the strait, majestic Ottoman palaces, ancient fortresses, and charming wooden mansions lined the shores. The Dolmabahçe Palace stood out with its elegant European architecture, while the Rumeli Fortress, with its stone towers and steep walls, reminded me of the city's deep military past.
-
-Sailing under the Bosphorus Bridge, which connects two continents, was a surreal moment — it’s incredible to think how Istanbul bridges not only land but also cultures, histories, and ways of life.
-
-The sun was already seated, but the lights of the boat gave everything a magical aura. Reflections danced on the dark water as the illuminated cruise slowly goes. It felt peaceful, almost cinematic, and gave me a whole new appreciation for Istanbul’s beauty at night.
+        <img src="cruize.jpg" alt="Day 4" class="w-full h-64 object-cover rounded-lg mb-4">
+        <p class="leading-relaxed">
+          Seeing Istanbul from the Bosphorus was magical. Palaces like Dolmabahçe and Beylerbeyi passed by as the sun set. The breeze, the golden light — unforgettable.
         </p>
       </article>
 
       <!-- Day 6 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
-        <h2 class="text-2xl font-bold mb-4">Day 6 - Hot Air Balloons in Cappadocia</h2>
-        <img src="ballon.jpg" alt="Cappadocia"
-          class="w-full h-64 object-cover rounded-lg mb-4" />
-        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-          I didn’t get a chance to write yesterday — I was on the move! After leaving Istanbul, I took a long but scenic journey to Cappadocia, located in central Turkey. The landscape changed dramatically along the way, from the bustling city to wide-open plains and surreal rock formations. It was a tiring day of travel, but absolutely worth it.
-
-This morning, I woke up before dawn, wrapped myself in a warm jacket, and headed out to experience one of the most iconic sights in the world: the hot air balloons rising over Cappadocia.
-
-As the first light of sunrise painted the sky in shades of orange and pink, I boarded a hot air balloon and gently lifted off the ground. Floating above the valleys and "fairy chimneys" was nothing short of magical.
-
-From up there, I had a panoramic view of the strange and beautiful landscape — ancient cave homes, winding paths, and other balloons drifting silently in the morning air. It felt like I was dreaming.
-
-The flight was peaceful and awe-inspiring. Touching down again, I was filled with a deep sense of wonder and gratitude. Riding a hot air balloon over Cappadocia is something I’ll remember for the rest of my life.
+        <h2 class="text-2xl font-bold mb-4">Day 6 - Cappadocia Adventure</h2>
+        <img src="ballon.jpg" alt="Day 6" class="w-full h-64 object-cover rounded-lg mb-4">
+        <p class="leading-relaxed">
+          From Istanbul to the dreamlike skies of Cappadocia! After a short flight, I arrived in this surreal region filled with volcanic valleys and fairy chimneys.
+          <br><br>
+          Woke up before dawn for the hot air balloon ride — and wow. As we lifted into the sky, the sun rose behind the hills, lighting up dozens of balloons floating silently across the horizon. Below us: vineyards, cave homes, and twisted rock formations.
+          <br><br>
+          It felt like flying through a painting.
         </p>
       </article>
 
     </section>
   </main>
 
-  <!-- Dark Mode Script -->
+  <!-- Scripts -->
   <script>
     const toggleDarkBtn = document.getElementById('toggleDark');
     const root = document.documentElement;
@@ -153,7 +153,11 @@ The flight was peaceful and awe-inspiring. Touching down again, I was filled wit
         toggleDarkBtn.textContent = '🌙';
       }
     });
-  </script>
 
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    hamburgerBtn.addEventListener('click', () => {
+      toggleMenu();
+    });
+  </script>
 </body>
 </html>
