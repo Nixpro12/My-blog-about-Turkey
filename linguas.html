@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Languages | Travel Blog</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script> tailwind.config = { darkMode: 'class' } </script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200 flex min-h-screen">
 
+  <!-- Botão Hamburger para mobile -->
+  <button id="hamburgerBtn" aria-label="Toggle Menu"
+    class="md:hidden fixed top-4 left-4 bg-blue-700 dark:bg-blue-900 text-white p-2 rounded z-50 shadow-md">☰</button>
+
   <!-- Sidebar -->
-  <aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl
+    transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40">
     <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
     <nav>
       <ul class="space-y-3">
@@ -25,13 +30,16 @@
     </nav>
   </aside>
 
+  <!-- Overlay para fechar sidebar no mobile -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
+
   <!-- Main content -->
   <main class="flex-1 p-6 md:ml-64">
     <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
 
     <!-- Hero -->
     <section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
-      <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80" alt="Languages of Turkey" class="w-full h-[300px] object-cover">
+      <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1600&q=80" alt="Languages of Turkey" class="w-full h-[300px] object-cover" />
       <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center">
         <h1 class="text-4xl font-extrabold text-white mb-2">Languages of Turkey</h1>
         <p class="text-lg text-gray-200 max-w-2xl">Explore the linguistic diversity of Turkey, including Turkish, Kurdish, Arabic and more.</p>
@@ -40,7 +48,9 @@
 
     <!-- Content -->
     <section class="max-w-3xl mx-auto bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-lg">
-      <p class="text-gray-700 dark:text-gray-300">The official language of Turkey is Turkish, spoken by the majority of the population. However, there are significant minority language communities, including Kurdish, Arabic, Zaza, and Laz. These languages reflect the multicultural fabric of the nation and are spoken in various regions throughout the country.</p>
+      <p class="text-gray-700 dark:text-gray-300">
+        The official language of Turkey is Turkish, spoken by the majority of the population. However, there are significant minority language communities, including Kurdish, Arabic, Zaza, and Laz. These languages reflect the multicultural fabric of the nation and are spoken in various regions throughout the country.
+      </p>
     </section>
 
     <!-- Footer -->
@@ -49,8 +59,9 @@
     </footer>
   </main>
 
-  <!-- Script -->
+  <!-- Scripts -->
   <script>
+    // Toggle dark mode
     const toggleDark = document.getElementById('toggleDark');
     const root = document.documentElement;
     function toggleDarkMode() {
@@ -71,6 +82,32 @@
         root.classList.add('dark');
         toggleDark.textContent = '☀️';
       }
+    });
+
+    // Sidebar toggle mobile
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      if (sidebar.classList.contains('-translate-x-full')) {
+        openSidebar();
+      } else {
+        closeSidebar();
+      }
+    });
+
+    overlay.addEventListener('click', () => {
+      closeSidebar();
     });
   </script>
 </body>
