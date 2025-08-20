@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Diário de Viagem | Meu Blog de Viagens</title>
-  <script src="diario.jpg"></script>
+
+  <!-- Importação correta do Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
     }
   </script>
+
   <script>
     function toggleMenu(forceClose = false) {
       const sidebar = document.getElementById("sidebar");
@@ -25,6 +28,7 @@
     }
   </script>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 font-sans flex min-h-screen relative text-gray-900 dark:text-gray-200 transition-colors duration-300">
 
   <!-- Botão modo claro/escuro -->
@@ -33,10 +37,10 @@
     🌙
   </button>
 
-  <!-- Overlay mobile -->
+  <!-- Overlay para mobile -->
   <div id="overlay" onclick="toggleMenu(true)" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
 
-  <!-- Sidebar com emojis -->
+  <!-- Sidebar -->
   <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 bg-blue-700 dark:bg-blue-900 text-white p-4 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40 h-screen">
     <h1 class="text-2xl font-bold mb-6">🌍 Travel Blog</h1>
     <nav>
@@ -56,77 +60,69 @@
   <main class="flex-1 p-6 md:ml-64">
     <button id="hamburgerBtn" aria-label="Toggle Menu" class="md:hidden fixed top-4 left-4 bg-blue-700 dark:bg-blue-900 text-white p-2 rounded z-50">☰</button>
 
-    <section class="relative rounded-2xl overflow-hidden shadow-md mb-6">
+    <!-- Cabeçalho com imagem -->
+    <section class="relative rounded-2xl overflow-hidden shadow-md mb-10">
       <img src="diarioviagem.jpg" alt="Diário de Viagem" class="w-full h-96 object-cover" />
-      <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-6">
-        <h1 class="text-3xl md:text-4xl text-white font-bold text-center">Diário de Viagem</h1>
+      <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6 text-center">
+        <div>
+          <h1 class="text-4xl font-extrabold text-white mb-2">Diário de Viagem</h1>
+          <p class="text-lg text-white">Acompanhe a jornada inesquecível por paisagens históricas e experiências únicas.</p>
+        </div>
       </div>
     </section>
 
     <!-- Artigos do diário -->
-    <section class="max-w-4xl mx-auto space-y-8">
-
-      <!-- Day 1 -->
+    <section class="max-w-4xl mx-auto space-y-10">
+      
+      <!-- Dia 1 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 1 - Arrival in Turkey</h2>
         <img src="ruaistambul.jpg" alt="Day 1" class="w-full h-64 object-cover rounded-lg mb-4">
         <p class="leading-relaxed">
-          After a long flight, I finally landed in Istanbul! The moment I stepped off the plane, I was greeted by a city that pulses with life and history. Istanbul isn’t just a destination — it’s a living museum where ancient empires meet modern energy.
-          <br><br>
-          Even during the drive from the airport to my hotel, I could feel the unique rhythm of this place: sleek skyscrapers standing proudly beside centuries-old mosques, and the calls to prayer echoing through streets buzzing with cafés, shops, and friendly locals.
-          <br><br>
-          This city has been the heart of the Roman, Byzantine, and Ottoman empires — no wonder its cultural layers run so deep.
+          After a long flight, I finally landed in Istanbul! The moment I stepped off the plane, I was greeted by a city that pulses with life and history...
         </p>
       </article>
 
-      <!-- Day 2 -->
+      <!-- Dia 2 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 2 - Exploring Istanbul</h2>
         <img src="Sultanahmet.jpg" alt="Day 2" class="w-full h-64 object-cover rounded-lg mb-4">
         <p class="leading-relaxed">
-          I started my morning walking through the historic streets of Sultanahmet, the heart of old Constantinople. Visiting the Hagia Sophia was simply breathtaking. Just across the square stands the Blue Mosque, equally stunning with its elegant minarets and İznik tiles.
-          <br><br>
-          I ended the day with a sizzling Turkish kebab — spicy grilled meat wrapped in soft bread with pickled veggies and a dash of sumac.
+          I started my morning walking through the historic streets of Sultanahmet, the heart of old Constantinople. Visiting the Hagia Sophia was simply breathtaking...
         </p>
       </article>
 
-      <!-- Day 3 -->
+      <!-- Dia 3 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 3 - Grand Bazaar Adventure</h2>
         <img src="granbazar.jpg" alt="Day 3" class="w-full h-64 object-cover rounded-lg mb-4">
         <p class="leading-relaxed">
-          I spent hours wandering through its labyrinthine corridors — over 4,000 shops! Bargaining with shopkeepers was a fun challenge. I left with a few meaningful gifts and souvenirs, each with its own story.
+          I spent hours wandering through its labyrinthine corridors — over 4,000 shops! Bargaining with shopkeepers was a fun challenge...
         </p>
       </article>
 
-      <!-- Day 4 -->
+      <!-- Dia 4 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 4 - Epheseus City</h2>
         <img src="enne.jpg" alt="Day 4" class="w-full h-64 object-cover rounded-lg mb-4">
         <p class="leading-relaxed">
-          Today I visited Ephesus, one of the most famous ancient cities in Turkey. Walking through the old stone streets felt like traveling back in time. I saw the ruins of temples, theaters, and houses that were thousands of years old. The Library of Celsus was my favorite part. Even though it is partly destroyed, it still looks very grand and beautiful. I also saw the big theater where people once watched plays and speeches.
-
-It was amazing to imagine how people lived here so long ago. Ephesus showed me how rich Turkey’s history is, and it was one of the most interesting days of my trip.
+          Today I visited Ephesus, one of the most famous ancient cities in Turkey. Walking through the old stone streets felt like traveling back in time...
         </p>
       </article>
 
-      <!-- Day 6 -->
+      <!-- Dia 6 -->
       <article class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
         <h2 class="text-2xl font-bold mb-4">Day 6 - Cappadocia Adventure</h2>
         <img src="ballon.jpg" alt="Day 6" class="w-full h-64 object-cover rounded-lg mb-4">
         <p class="leading-relaxed">
-          From Istanbul to the dreamlike skies of Cappadocia! After a short flight, I arrived in this surreal region filled with volcanic valleys and fairy chimneys.
-          <br><br>
-          Woke up before dawn for the hot air balloon ride — and wow. As we lifted into the sky, the sun rose behind the hills, lighting up dozens of balloons floating silently across the horizon. Below us: vineyards, cave homes, and twisted rock formations.
-          <br><br>
-          It felt like flying through a painting.
+          From Istanbul to the dreamlike skies of Cappadocia! After a short flight, I arrived in this surreal region filled with volcanic valleys and fairy chimneys...
         </p>
       </article>
 
     </section>
   </main>
 
-  <!-- Scripts -->
+  <!-- Script do modo escuro e menu -->
   <script>
     const toggleDarkBtn = document.getElementById('toggleDark');
     const root = document.documentElement;
@@ -156,14 +152,7 @@ It was amazing to imagine how people lived here so long ago. Ephesus showed me h
       }
     });
 
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    hamburgerBtn.addEventListener('click', () => {
-      toggleMenu();
-    });
-  </script>
-</body>
-</html>
-
+    const hamburgerBtn = document.getElement
 
 
 
