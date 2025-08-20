@@ -1,119 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Travel Blog</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-darkMode: 'class'
-}
-</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+    };
+  </script>
+  <style>
+    @media (min-width: 768px) {
+      #sidebar {
+        transform: none !important;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-200 transition-colors duration-300 flex min-h-screen">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300 flex min-h-screen">
 
+  <!-- Overlay (mobile) -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden" onclick="toggleMenu(true)"></div>
 
-<!-- Sidebar -->
-<aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
-<h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
-<nav>
-<ul class="space-y-3">
-<li><a href="area.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>📐</span> Area</a></li>
-<li><a href="populacao.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>👥</span> Population</a></li>
-<li><a href="linguas.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🗣️</span> Languages</a></li>
-<li><a href="geografia.html" class="flex items-center gap-2 p-2 rounded bg-blue-900 font-semibold transition-colors"><span>🌄</span> Geography</a></li>
-<li><a href="fauna.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🦁</span> Wildlife</a></li>
-<li><a href="clima.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>☀️</span> Climate</a></li>
-<li><a href="diario.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>📔</span> Travel Diary</a></li>
-</ul>
-</nav>
-</aside>
+  <!-- Sidebar -->
+  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-[300px] bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40 h-screen">
+    <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
+    <nav>
+      <ul class="space-y-3">
+        <li><a href="area.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>📐</span> Area</a></li>
+        <li><a href="populacao.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>👥</span> Population</a></li>
+        <li><a href="linguas.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🗣️</span> Languages</a></li>
+        <li><a href="geografia.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🌄</span> Geography</a></li>
+        <li><a href="fauna.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>🦁</span> Wildlife</a></li>
+        <li><a href="clima.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500 transition-colors"><span>☀️</span> Climate</a></li>
+        <li><a href="diario.html" class="flex items-center gap-2 p-2 rounded bg-blue-900 font-semibold transition-colors"><span>📔</span> Travel Diary</a></li>
+      </ul>
+    </nav>
+  </aside>
 
+  <!-- Conteúdo principal -->
+  <main class="flex-1 p-6 md:ml-[300px]">
 
-<!-- Main -->
-<main class="flex-1 p-6 md:ml-64">
+    <!-- Botão hamburguer (mobile) -->
+    <button onclick="toggleMenu()" class="md:hidden fixed top-4 left-4 bg-blue-700 text-white p-2 rounded z-50">
+      ☰
+    </button>
 
+    <!-- Botão modo escuro -->
+    <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md z-50">
+      🌙
+    </button>
 
-<!-- Dark mode button -->
-<button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
+    <!-- Hero Section -->
+    <section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+      <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80" alt="Istanbul" class="w-full h-[400px] object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center p-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Welcome to my travel blog!</h1>
+        <p class="text-lg text-gray-200 max-w-2xl">Discover amazing places, cultures, and adventures around the world. Let’s explore together!</p>
+      </div>
+    </section>
 
+    <!-- Cards -->
+    <section class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
+        <h2 class="text-xl font-bold flex items-center gap-2 mb-2">🌄 Geography</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Discover the diversity of landscapes and terrain of the destinations.</p>
+        <a href="geografia.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Read more</a>
+      </div>
 
-<!-- Hero -->
-<section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
-<img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1600&q=80" alt="Istanbul" class="w-full h-[400px] object-cover" />
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center p-6">
-<h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Welcome to my travel blog!</h1>
-<p class="text-lg text-gray-200 max-w-2xl">Discover amazing places, cultures, and adventures around the world. Let’s explore together!</p>
-</div>
-</section>
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
+        <h2 class="text-xl font-bold flex items-center gap-2 mb-2">🦁 Wildlife</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">Discover the wildlife and unique species of each place.</p>
+        <a href="fauna.html" class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Read more</a>
+      </div>
 
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
+        <h2 class="text-xl font-bold flex items-center gap-2 mb-2">📔 Travel Diary</h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">How was our trip to different places of the world?</p>
+        <a href="diario.html" class="inline-block px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Read more</a>
+      </div>
+    </section>
 
-<!-- Cards -->
-<section class="grid md:grid-cols-3 gap-6">
-<div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-<h2 class="text-xl font-bold flex items-center gap-2 mb-2">🌄 Geography</h2>
-<p class="text-gray-600 dark:text-gray-300 mb-4">Discover the diversity of landscapes and terrain of the destinations.</p>
-<a href="geografia.html" class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Read more</a>
-</div>
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm border-t border-gray-300 dark:border-gray-700 pt-4">
+      © 2025 Travel Blog — Made with ❤️ and curiosity.
+    </footer>
+  </main>
 
+  <!-- Scripts -->
+  <script>
+    const toggleDarkBtn = document.getElementById('toggleDark');
+    const root = document.documentElement;
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
 
-<div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-<h2 class="text-xl font-bold flex items-center gap-2 mb-2">🦁 Wildlife</h2>
-<p class="text-gray-600 dark:text-gray-300 mb-4">Discover the wildlife and unique species of each place.</p>
-<a href="fauna.html" class="inline-block px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">Read more</a>
-</div>
+    function toggleDarkMode() {
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        toggleDarkBtn.textContent = '🌙';
+      } else {
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        toggleDarkBtn.textContent = '☀️';
+      }
+    }
 
+    toggleDarkBtn.addEventListener('click', toggleDarkMode);
 
-<div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition duration-300">
-<h2 class="text-xl font-bold flex items-center gap-2 mb-2">📔 Travel Diary</h2>
-<p class="text-gray-600 dark:text-gray-300 mb-4">How was our trip to different places of the world?</p>
-<a href="diario.html" class="inline-block px-4 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">Read more</a>
-</div>
-</section>
+    window.addEventListener('load', () => {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        root.classList.add('dark');
+        toggleDarkBtn.textContent = '☀️';
+      } else {
+        root.classList.remove('dark');
+        toggleDarkBtn.textContent = '🌙';
+      }
+    });
 
-
-<!-- Footer -->
-<footer class="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm border-t border-gray-300 dark:border-gray-700 pt-4">
-© 2025 Travel Blog — Made with ❤️ and curiosity.
-</footer>
-</main>
-
-
-<!-- Script dark mode -->
-<script>
-const toggleDarkBtn = document.getElementById('toggleDark');
-const root = document.documentElement;
-
-
-function toggleDarkMode() {
-if (root.classList.contains('dark')) {
-root.classList.remove('dark');
-localStorage.setItem('theme', 'light');
-toggleDarkBtn.textContent = '🌙';
-} else {
-root.classList.add('dark');
-localStorage.setItem('theme', 'dark');
-toggleDarkBtn.textContent = '☀️';
-}
-}
-
-
-toggleDarkBtn.addEventListener('click', toggleDarkMode);
-
-
-window.addEventListener('load', () => {
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'dark') {
-root.classList.add('dark');
-toggleDarkBtn.textContent = '☀️';
-} else {
-root.classList.remove('dark');
-toggleDarkBtn.textContent = '🌙';
-}
-});
-</script>
-
-
+    function toggleMenu(forceClose = false) {
+      const isOpen = !sidebar.classList.contains('-translate-x-full');
+      if (forceClose || isOpen) {
+        sidebar.classList.add('-translate-x-full');
+        overlay.classList.add('hidden');
+      } else {
+        sidebar.classList.remove('-translate-x-full');
+        overlay.classList.remove('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
