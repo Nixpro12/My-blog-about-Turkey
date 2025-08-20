@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Area | Travel Blog</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:'class'}</script>
+<script>tailwind.config = {darkMode: 'class'}</script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-200 flex min-h-screen transition-colors duration-300">
 
 <!-- Sidebar -->
-<aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl md:static md:translate-x-0 transform transition-transform duration-300 ease-in-out -translate-x-full md:block">
   <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
   <nav>
     <ul class="space-y-3">
@@ -27,17 +27,23 @@
 
 <!-- Main -->
 <main class="flex-1 p-6 md:ml-64">
+  <!-- Mobile hamburger button -->
+  <button id="menuToggle" aria-label="Toggle Menu" class="fixed top-4 left-4 md:hidden bg-blue-700 text-white p-2 rounded-md shadow-md z-50">☰</button>
+
+  <!-- Dark mode button -->
   <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
 
   <section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" class="w-full h-[300px] object-cover" alt="Area of Turkey">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80" class="w-full h-[300px] object-cover" alt="Area of Turkey" />
     <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center">
       <h1 class="text-3xl md:text-4xl font-bold text-white">Area of Turkey</h1>
     </div>
   </section>
 
   <section class="max-w-4xl mx-auto bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg leading-relaxed">
-    <p class="text-gray-700 dark:text-gray-300">Turkey covers an area of about 783,356 square kilometers, making it one of the largest countries in the region, with diverse landscapes ranging from plateaus to coasts.</p>
+    <p class="text-gray-700 dark:text-gray-300">
+      Turkey covers an area of about 783,356 square kilometers, making it one of the largest countries in the region, with diverse landscapes ranging from plateaus to coasts.
+    </p>
   </section>
 
   <footer class="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm border-t border-gray-300 dark:border-gray-700 pt-4">
@@ -46,10 +52,42 @@
 </main>
 
 <script>
-const toggleDark=document.getElementById('toggleDark');const root=document.documentElement;
-function toggleDarkMode(){if(root.classList.contains('dark')){root.classList.remove('dark');localStorage.setItem('theme','light');toggleDark.textContent='🌙';}else{root.classList.add('dark');localStorage.setItem('theme','dark');toggleDark.textContent='☀️';}}
-toggleDark.addEventListener('click',toggleDarkMode);
-window.addEventListener('load',()=>{const saved=localStorage.getItem('theme');if(saved==='dark'){root.classList.add('dark');toggleDark.textContent='☀️';}});
+  const toggleDark = document.getElementById('toggleDark');
+  const root = document.documentElement;
+
+  function toggleDarkMode() {
+    if (root.classList.contains('dark')) {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      toggleDark.textContent = '🌙';
+    } else {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      toggleDark.textContent = '☀️';
+    }
+  }
+
+  toggleDark.addEventListener('click', toggleDarkMode);
+
+  window.addEventListener('load', () => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark') {
+      root.classList.add('dark');
+      toggleDark.textContent = '☀️';
+    }
+  });
+
+  // Mobile menu toggle
+  const menuToggleBtn = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+
+  menuToggleBtn.addEventListener('click', () => {
+    if (sidebar.classList.contains('-translate-x-full')) {
+      sidebar.classList.remove('-translate-x-full');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+    }
+  });
 </script>
 </body>
 </html>
