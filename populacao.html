@@ -9,8 +9,13 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200 flex min-h-screen">
 
+  <!-- Botão Hamburger para mobile -->
+  <button id="hamburgerBtn" aria-label="Toggle Menu"
+    class="md:hidden fixed top-4 left-4 bg-blue-700 dark:bg-blue-900 text-white p-2 rounded z-50 shadow-md">☰</button>
+
   <!-- Sidebar -->
-  <aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl
+    transform -translate-x-full md:translate-x-0 transition-transform duration-300 z-40">
     <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
     <nav>
       <ul class="space-y-3">
@@ -24,6 +29,9 @@
       </ul>
     </nav>
   </aside>
+
+  <!-- Overlay para fechar sidebar ao clicar fora (mobile) -->
+  <div id="overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden md:hidden"></div>
 
   <!-- Main content -->
   <main class="flex-1 p-6 md:ml-64">
@@ -50,8 +58,9 @@
     </footer>
   </main>
 
-  <!-- Script -->
+  <!-- Scripts -->
   <script>
+    // Toggle dark mode
     const toggleDark = document.getElementById('toggleDark');
     const root = document.documentElement;
     function toggleDarkMode() {
@@ -72,6 +81,33 @@
         root.classList.add('dark');
         toggleDark.textContent = '☀️';
       }
+    });
+
+    // Sidebar toggle (mobile)
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    function openSidebar() {
+      sidebar.classList.remove('-translate-x-full');
+      overlay.classList.remove('hidden');
+    }
+
+    function closeSidebar() {
+      sidebar.classList.add('-translate-x-full');
+      overlay.classList.add('hidden');
+    }
+
+    hamburgerBtn.addEventListener('click', () => {
+      if (sidebar.classList.contains('-translate-x-full')) {
+        openSidebar();
+      } else {
+        closeSidebar();
+      }
+    });
+
+    overlay.addEventListener('click', () => {
+      closeSidebar();
     });
   </script>
 </body>
