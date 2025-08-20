@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Geography | Travel Blog</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = {
-  darkMode: 'class'
-}
+  tailwind.config = {
+    darkMode: 'class'
+  }
 </script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-200 transition-colors duration-300 flex min-h-screen">
 
 <!-- Sidebar -->
-<aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+<aside id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl md:static md:translate-x-0 transform transition-transform duration-300 ease-in-out -translate-x-full md:block">
   <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
   <nav>
     <ul class="space-y-3">
@@ -31,6 +31,11 @@ tailwind.config = {
 
 <!-- Main -->
 <main class="flex-1 p-6 md:ml-64">
+
+  <!-- Mobile hamburger button -->
+  <button id="menuToggle" aria-label="Toggle Menu" class="fixed top-4 left-4 md:hidden bg-blue-700 text-white p-2 rounded-md shadow-md z-50">
+    ☰
+  </button>
 
   <!-- Dark mode button -->
   <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
@@ -63,35 +68,47 @@ tailwind.config = {
   </footer>
 </main>
 
-<!-- Script dark mode -->
+<!-- Scripts -->
 <script>
-const toggleDarkBtn = document.getElementById('toggleDark');
-const root = document.documentElement;
+  const toggleDarkBtn = document.getElementById('toggleDark');
+  const root = document.documentElement;
 
-function toggleDarkMode() {
-  if (root.classList.contains('dark')) {
-    root.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
-    toggleDarkBtn.textContent = '🌙';
-  } else {
-    root.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
-    toggleDarkBtn.textContent = '☀️';
+  function toggleDarkMode() {
+    if (root.classList.contains('dark')) {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      toggleDarkBtn.textContent = '🌙';
+    } else {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      toggleDarkBtn.textContent = '☀️';
+    }
   }
-}
 
-toggleDarkBtn.addEventListener('click', toggleDarkMode);
+  toggleDarkBtn.addEventListener('click', toggleDarkMode);
 
-window.addEventListener('load', () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'dark') {
-    root.classList.add('dark');
-    toggleDarkBtn.textContent = '☀️';
-  } else {
-    root.classList.remove('dark');
-    toggleDarkBtn.textContent = '🌙';
-  }
-});
+  window.addEventListener('load', () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      root.classList.add('dark');
+      toggleDarkBtn.textContent = '☀️';
+    } else {
+      root.classList.remove('dark');
+      toggleDarkBtn.textContent = '🌙';
+    }
+  });
+
+  // Menu toggle for mobile
+  const menuToggleBtn = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+
+  menuToggleBtn.addEventListener('click', () => {
+    if (sidebar.classList.contains('-translate-x-full')) {
+      sidebar.classList.remove('-translate-x-full');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+    }
+  });
 </script>
 
 </body>
