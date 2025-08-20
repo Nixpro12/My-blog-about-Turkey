@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wildlife | Travel Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200 flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+    <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
+    <nav>
+      <ul class="space-y-3">
+        <li><a href="area.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>📐</span> Area</a></li>
+        <li><a href="populacao.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>👥</span> Population</a></li>
+        <li><a href="linguas.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>🗣️</span> Languages</a></li>
+        <li><a href="geografia.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>🌄</span> Geography</a></li>
+        <li><a href="fauna.html" class="flex items-center gap-2 p-2 rounded bg-blue-900 font-semibold"><span>🦁</span> Wildlife</a></li>
+        <li><a href="clima.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>☀️</span> Climate</a></li>
+        <li><a href="diario.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>📔</span> Travel Diary</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 p-6 md:ml-64">
+    <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
+
+    <!-- Hero -->
+    <section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+      <img src="lynx.jpg" alt="Wildlife of Turkey" class="w-full h-[300px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center">
+        <h1 class="text-4xl font-extrabold text-white mb-2">Wildlife of Turkey</h1>
+        <p class="text-lg text-gray-200 max-w-2xl">Discover Turkey's rich biodiversity, including bears, wolves, lynxes, and unique bird species.</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="max-w-3xl mx-auto bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+      <p class="text-gray-700 dark:text-gray-300">Turkey is home to a remarkably rich and diverse range of wildlife, thanks to its unique geographical position between Europe and Asia, as well as its wide variety of ecosystems — from coastal wetlands and alpine forests to arid steppes and mountainous regions.
+
+The Black Sea region, with its dense forests and high rainfall, provides a habitat for brown bears, lynxes, wolves, and a wide array of bird species such as woodpeckers and eagles. In contrast, the Taurus Mountains and the rugged interior highlands are home to wild goats, ibex, and Anatolian leopards — a species once thought extinct, but now occasionally spotted thanks to conservation efforts.
+
+The Anatolian plateau, with its steppe-like environment, hosts species like the wild boar, foxes, and hares, while migratory birds — including flamingos, pelicans, and cranes — can be seen in large numbers in wetlands such as Lake Manyas and Lake Tuz, both designated bird sanctuaries.
+
+Turkey's extensive coastlines along the Aegean, Mediterranean, and Black Sea also support rich marine biodiversity. Loggerhead sea turtles (Caretta caretta) nest on Turkish beaches such as İztuzu Beach in Dalyan, while the waters are inhabited by Mediterranean monk seals, dolphins, and numerous fish and coral species.
+
+In response to habitat loss and environmental challenges, the country has established over 40 national parks and hundreds of nature reserves aimed at protecting endangered species and restoring natural habitats. These parks not only serve a critical ecological role but also support eco-tourism and educational programs that raise awareness of Turkey’s natural heritage.   </p>
+   </section>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm border-t pt-4">
+      © 2025 Travel Blog — Made with ❤️ and curiosity.
+    </footer>
+  </main>
+
+  <!-- Script -->
+  <script>
+    const toggleDark = document.getElementById('toggleDark');
+    const root = document.documentElement;
+    function toggleDarkMode() {
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        toggleDark.textContent = '🌙';
+      } else {
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        toggleDark.textContent = '☀️';
+      }
+    }
+    toggleDark.addEventListener('click', toggleDarkMode);
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        root.classList.add('dark');
+        toggleDark.textContent = '☀️';
+      }
+    });
+  </script>
+</body>
+</html>

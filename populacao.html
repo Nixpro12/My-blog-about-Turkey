@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Population | Travel Blog</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-200 flex min-h-screen">
+
+  <!-- Sidebar -->
+  <aside class="fixed md:static inset-y-0 left-0 w-64 bg-gradient-to-b from-blue-800 to-blue-600 dark:from-blue-900 dark:to-blue-700 text-white p-6 h-screen shadow-xl">
+    <h1 class="text-2xl font-bold mb-8">🌍 Travel Blog</h1>
+    <nav>
+      <ul class="space-y-3">
+        <li><a href="area.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>📐</span> Area</a></li>
+        <li><a href="populacao.html" class="flex items-center gap-2 p-2 rounded bg-blue-900 font-semibold"><span>👥</span> Population</a></li>
+        <li><a href="linguas.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>🗣️</span> Languages</a></li>
+        <li><a href="geografia.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>🌄</span> Geography</a></li>
+        <li><a href="fauna.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>🦁</span> Wildlife</a></li>
+        <li><a href="clima.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>☀️</span> Climate</a></li>
+        <li><a href="diario.html" class="flex items-center gap-2 p-2 rounded hover:bg-blue-500"><span>📔</span> Travel Diary</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <main class="flex-1 p-6 md:ml-64">
+    <button id="toggleDark" class="fixed top-4 right-4 bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md">🌙</button>
+
+    <!-- Hero -->
+    <section class="relative rounded-2xl overflow-hidden shadow-lg mb-8">
+      <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?auto=format&fit=crop&w=1600&q=80" alt="Population of Turkey" class="w-full h-[300px] object-cover">
+      <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col items-center justify-center text-center">
+        <h1 class="text-4xl font-extrabold text-white mb-2">Population of Turkey</h1>
+        <p class="text-lg text-gray-200 max-w-2xl">Discover the demographic richness of a country where cultures and communities blend.</p>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="max-w-3xl mx-auto bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+      <p class="text-gray-700 dark:text-gray-300">Turkey is home to over 85 million people, ranking it among the most populous countries in its region. Most of the population lives in bustling urban centers, with Istanbul standing out as the largest city — a vibrant metropolis that blends history and modernity. Ankara, the capital, comes next, serving as the political and administrative heart, followed by Izmir, known for its lively coastal atmosphere.</p>
+      <p class="text-gray-700 dark:text-gray-300 mt-4">The population is generally young and energetic, contributing to a dynamic society. Turkey’s unique position at the crossroads of Europe and Asia has shaped a rich tapestry of cultures, traditions, and ethnicities over millennia. This diverse heritage is clearly reflected in daily life, festivals, cuisine, and the warmth of its people, making Turkey a fascinating blend of the old and the new.</p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-12 text-center text-gray-600 dark:text-gray-400 text-sm border-t pt-4">
+      © 2025 Travel Blog — Made with ❤️ and curiosity.
+    </footer>
+  </main>
+
+  <!-- Script -->
+  <script>
+    const toggleDark = document.getElementById('toggleDark');
+    const root = document.documentElement;
+    function toggleDarkMode() {
+      if (root.classList.contains('dark')) {
+        root.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        toggleDark.textContent = '🌙';
+      } else {
+        root.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        toggleDark.textContent = '☀️';
+      }
+    }
+    toggleDark.addEventListener('click', toggleDarkMode);
+    window.addEventListener('load', () => {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark') {
+        root.classList.add('dark');
+        toggleDark.textContent = '☀️';
+      }
+    });
+  </script>
+</body>
+</html>
